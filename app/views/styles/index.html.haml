@@ -1,3 +1,6 @@
-- @styles.each do |style|
-  = link_to (image_tag style.image.url(:medium)), style
-  %h2= link_to style.title, style
+#styles.transitions-enabled
+	- @styles.each do |style|
+		.box.panel.panel-default
+			= link_to (image_tag style.image.url), style
+			%h2= link_to style.title, style
+			

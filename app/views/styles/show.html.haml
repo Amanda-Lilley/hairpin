@@ -1,11 +1,21 @@
-= image_tag @style.image.url(:medium)
-%h1= @style.title
-%p= @style.description
-%p
-Submitted by
-= @style.user.email
-
-%br/
-= link_to "Back", root_path
-= link_to "Edit", edit_style_path
-= link_to "Delete", style_path, method: :delete, data: { confirm: "Are you sure?"}
+#style_show.row
+  .col-md-8.col-md-offset-2
+    .panel.panel-default
+      .panel-heading.style_image
+        = image_tag @style.image.url
+      .panel-body
+        %h1= @style.title
+        %p.description= @style.description
+        %p
+        Styled by:
+        = @style.user.email
+      .panel-footer
+        .row
+          .col-md-6
+            %p.user
+            Styled by:
+            = @style.user.email
+          .col-md-6
+            .btn-group.pull-right
+              = link_to "Edit", edit_style_path, class: "btn btn-default"
+              = link_to "Delete", style_path, method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-default"
