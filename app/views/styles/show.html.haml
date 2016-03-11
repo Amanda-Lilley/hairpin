@@ -1,0 +1,6 @@
+%h1= @style.title
+%p= @style.description
+
+= link_to "Back", root_path
+= link_to "Edit", edit_style_path
+= link_to "Delete", style_path, method: :delete, data: { confirm: "Are you sure?"}
