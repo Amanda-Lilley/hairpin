@@ -6,16 +6,17 @@
       .panel-body
         %h1= @style.title
         %p.description= @style.description
-        %p
-        Styled by:
-        = @style.user.email
       .panel-footer
         .row
           .col-md-6
             %p.user
-            Styled by:
-            = @style.user.email
+              Styled by
+              = @style.user.email
           .col-md-6
             .btn-group.pull-right
-              = link_to "Edit", edit_style_path, class: "btn btn-default"
-              = link_to "Delete", style_path, method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-default"
+              = link_to like_style_path(@style), method: :put, class: "btn btn-default" do
+                %span.glyphicon.glyphicon-heart
+                = @style.get_upvotes.size
+              - if user_signed_in?
+                = link_to "Edit", edit_style_path, class: "btn btn-default"
+                = link_to "Delete", style_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default"

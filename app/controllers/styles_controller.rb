@@ -1,6 +1,6 @@
 class StylesController < ApplicationController
-  before_action :find_style, only: [:show, :edit, :update, :destroy]
-
+  before_action :find_style, only: [:show, :edit, :update, :destroy, :upvote]
+  before_action :authenticate_user!, except: [:index, :show]
   def index
     @styles = Style.all.order("created_at DESC")
   end
@@ -36,6 +36,11 @@ class StylesController < ApplicationController
   def destroy
     @style.destroy
     redirect_to root_path
+  end
+
+  def upvote
+    @style.upvote_by current_user
+    redirect_to :back
   end
 
   private
