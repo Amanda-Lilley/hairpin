@@ -9,11 +9,11 @@ class StylesController < ApplicationController
   end
 
   def new
-    @style = Style.new
+    @style = current_user.styles.build
   end
 
   def create
-    @style = Style.new(style_params)
+    @style = current_user.styles.build(style_params)
 
     if @style.save
       redirect_to @style, notice: "Style successfully created."
